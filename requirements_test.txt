@@ -1,0 +1,4 @@
+flake8==3.4
+pylint==1.7.2
+mypy-lang==0.4.6
+pydocstyle==2.0.0
