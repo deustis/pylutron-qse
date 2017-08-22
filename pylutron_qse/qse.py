@@ -17,6 +17,7 @@ _LOG.setLevel(logging.DEBUG)
 _TIMEOUT = 3
 _LOGIN_ATTEMPT_INTERVAL = datetime.timedelta(seconds=60)
 _DEVICE_DISCOVERY_INTERVAL = datetime.timedelta(seconds=10 * 60)
+_MONITOR_INTERVAL = datetime.timedelta(milliseconds=50)
 
 # Misc QSE strings.
 _DELIMITER = b','
@@ -169,6 +170,7 @@ class QSE(object):
 
             # Read events.
             self._lock_and_do_if_connected(self._read_events)
+            time.sleep(float(_MONITOR_INTERVAL.microseconds) / 1e6)
         _LOG.debug('Exiting background monitoring thread.')
 
     def _read_events(self):

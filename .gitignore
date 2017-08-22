@@ -1,3 +1,5 @@
 __pycache__
 .tox
+build/
+dist/
 pylutron_qse.egg-info/
