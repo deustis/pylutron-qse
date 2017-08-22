@@ -151,7 +151,8 @@ class Roller(Device):
     def _handle_level(self, new_level):
         first_level_update = self._last_level_update is None
         self._last_level_update = datetime.datetime.now()
-        if first_level_update or self._received_simultaneous_stop():
+        if (first_level_update or new_level == self._current_level or
+                self._received_simultaneous_stop()):
             self._set_state(new_level, new_level, False)
         else:
             self._set_state(new_level, self._current_level, True)
