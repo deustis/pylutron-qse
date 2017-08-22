@@ -216,13 +216,14 @@ class QSE(object):
             return
         else:
             # Integration id
+            id_string = id_or_sn.decode('ascii')
             devices_with_id = [d for d in self._devices.values()
-                               if d.integration_id == id_or_sn]
+                               if d.integration_id == id_string]
             if devices_with_id:
                 assert len(devices_with_id) == 1
                 # pylint: disable=protected-access
                 devices_with_id[0]._handle_response(response)
-            return
+                return
         _LOG.debug('Event for unknown device: ' + str(response))
 
     def _make_device_request(self, serial_number, action, value=None):
